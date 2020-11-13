@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <!-- Tête de la page index -->
 <head>
 
@@ -35,27 +34,43 @@
 <body id="page-top" class="index">
 
     <div class="master-wrapper">
-
-        <div class="preloader">
+    
+        <!--<div class="preloader">
             <div class="preloader-img">
                 <span class="loading-animation animate-flicker"><img src="public/img/image/loading.GIF" alt="loading"/></span>
             </div>
-        </div>
+        </div>-->
         <!-- Menu -->
+        
+        <nav class="navbar navbar-default navbar-fixed-top fadeInDown" data-wow-delay="0.5s">
         <?php
             include("vues/v_menu.php");
         ?>
-        <!-- Premiére page (nom + slogan) -->
+        <!-- page master page -->
+
         <?php
-            include("vues/v_accueil.php");
+        include("vues/v_accueil.php");
+            if (isset($_GET['page']))
+            {
+                switch($_GET['page'])
+                {
+                case 'accueil';break;
+                case 'voyage':include("vues/v_voyage.php");break;
+                case 'ville':include("vues/v_villes.php");break;
+                default:include("vues/erreur.php");break;
+                }
+            }
+            else
+            {
+                //header("Location:index.php?page=accueil");
+            }
+            ?>
+
+        </nav>
+        <!-- Pied de page -->
+        <?php
+            include("vues/v_pied.php");
         ?>
-
-        
-
-    <!-- Pied de page -->
-    <?php
-        include("vues/v_pied.php");
-    ?>
 
     <!-- JavaScript -->
     <script src="public/js/jquery.js"></script>
